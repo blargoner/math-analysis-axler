@@ -1,0 +1,140 @@
+% Notes and exercises from Measure, Integration & Real Analysis
+% By John Peloquin
+\documentclass[letterpaper,12pt]{article}
+\usepackage{amsmath,amssymb,amsthm,fourier,enumitem}
+
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\R}{\mathbf{R}}
+
+\newcommand{\union}{\cup}
+\newcommand{\bigunion}{\bigcup}
+\newcommand{\sect}{\cap}
+\newcommand{\bigsect}{\bigcap}
+\newcommand{\mult}{\cdot}
+
+\DeclareMathOperator{\len}{\ell}
+
+\newcommand{\abs}[1]{|#1|}
+\renewcommand{\l}[1]{\len(#1)}
+\newcommand{\m}[1]{|#1|}
+\newcommand{\bigmeasure}[1]{\Bigl|#1\Bigr|}
+
+% Theorems
+\theoremstyle{definition}
+\newtheorem*{exer}{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{rmk}{Remark}
+
+% Meta
+\title{Notes and exercises from\\\emph{Measure, Integration \& Real Analysis}}
+\author{John Peloquin}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Introduction}
+This document contains notes and exercises from~\cite{axler}.
+
+\section*{Chapter~2}
+\subsection*{Section~A}
+
+\begin{exer}[1]
+If \(A,B\subset\R\) and \(\m{B}=0\), then \(\m{A\union B}=\m{A}\).
+\end{exer}
+\begin{proof}
+By monotonicity and subadditivity of outer measure,
+\[\m{A}\le\m{A\union B}\le\m{A}+\m{B}=\m{A}\qedhere\]
+\end{proof}
+
+\begin{exer}[2]
+If \(A\subset\R\) and \(t\in\R\), then \(\m{tA}=\abs{t}\m{A}\), where \(tA=\{\,ta\mid a\in A\,\}\).
+\end{exer}
+\begin{proof}
+If \(t=0\), then the result is trivial (where we assume \(0\mult\infty=0\)). If \(t>0\), then for \(b,c\in\R\) with \(b<c\), \(t(b,c)=(tb,tc)\) and so
+\[\l{t(b,c)}=tc-tb=t(c-b)=t\l{(b,c)}\]
+More generally if \(t\ne0\) and \(I\subset\R\) is an arbitrary open interval, then \(tI\)~is an open interval with \(\l{tI}=\abs{t}\l{I}\).
+
+Fix \(\epsilon>0\). Let \(I_1,I_2,\ldots\) be a sequence of open intervals with \(A\subset\bigunion_{k=1}^{\infty}I_k\) and
+\[\sum_{k=1}^{\infty}\l{I_k}\le\m{A}+\frac{\epsilon}{\abs{t}}\]
+By the above, \(tI_1,tI_2,\ldots\) is a sequence of open intervals with \(tA\subset\bigunion_{k=1}^{\infty}tI_k\) and
+\[\m{tA}\le\sum_{k=1}^{\infty}\l{tI_k}=\abs{t}\sum_{k=1}^{\infty}\l{I_k}\le\abs{t}\,\Bigl(\m{A}+\frac{\epsilon}{\abs{t}}\Bigr)=\abs{t}\m{A}+\epsilon\]
+Since \(\epsilon\)~is arbitrary, it follows that
+\[\m{tA}\le\abs{t}\m{A}\]
+Substituting simultaneously \(1/t\) for~\(t\) and \(tA\) for~\(A\) yields
+\[\abs{t}\m{A}\le\m{tA}\]
+so \(\m{tA}=\abs{t}\m{A}\) as desired.
+\end{proof}
+
+\begin{exer}[3]
+If \(A,B\subset\R\) and \(\m{A}<\infty\), then \(\m{B\setminus A}\ge\m{B}-\m{A}\).
+\end{exer}
+\begin{proof}
+Since \(B\subset A\union(B\setminus A)\),
+\[\m{B}\le\m{A}+\m{B\setminus A}\]
+The result follows by subtracting \(\m{A}\) from both sides.
+\end{proof}
+\begin{rmk}
+The hypothesis \(\m{A}<\infty\) is necessary since \(\infty-\infty\) is undefined.
+\end{rmk}
+
+\begin{exer}[6]
+If \(a,b\in\R\) and \(a<b\), then
+\[\m{(a,b)}=\m{[a,b)}=\m{(a,b]}=b-a\]
+\end{exer}
+\begin{proof}
+For example, \([a,b]=(a,b)\union\{a,b\}\) and \(\m{\{a,b\}}=0\), so
+\[\m{(a,b)}=\m{[a,b]}=b-a\qedhere\]
+\end{proof}
+
+\begin{exer}[7]
+If \(a,b,c,d\in\R\) with \(a<b\) and \(c<d\), then
+\[\m{(a,b)\union(c,d)}=(b-a)+(d-c)\quad\text{if and only if}\quad(a,b)\sect(c,d)=\emptyset\]
+\end{exer}
+\begin{proof}
+If \((a,b)\sect(c,d)=\emptyset\), then a generalization of the proof of~2.14 shows that
+\[\m{(a,b)\union(c,d)}=\m{[a,b]\union[c,d]}=(b-a)+(d-c)\]
+If \((a,b)\sect(c,d)\ne\emptyset\), we may assume \(a\le c<b\). If \(b\le d\), then \((a,b)\union(c,d)=(a,d)\) and
+\[\m{(a,d)}=d-a<(b-a)+(d-c)\]
+If \(d<b\), then \((a,b)\union(c,d)=(a,b)\) and
+\[\m{(a,b)}=b-a<(b-a)+(d-c)\qedhere\]
+\end{proof}
+\begin{rmk}
+This proof generalizes to an arbitrary finite number of intervals.
+\end{rmk}
+
+\begin{exer}[10]
+\(\m{[0,1]\setminus\Q}=1\)
+\end{exer}
+\begin{proof}
+By Exercise~3, since \(\m{[0,1]}=1\) and \(\m{\Q}=0\).
+\end{proof}
+
+\begin{exer}[11]
+If \(I_1,I_2,\ldots\) is a disjoint sequence of open intervals, then
+\[\bigmeasure{\bigunion_{k=1}^{\infty}I_k}=\sum_{k=1}^{\infty}\l{I_k}\]
+\end{exer}
+\begin{proof}
+If any of the intervals are unbounded, then the result is trivial. If all of the intervals are bounded, then we may also assume that they are nonempty and the result follows from Exercise~7 since for all~\(n\),
+\[\sum_{k=1}^n\l{I_k}=\bigmeasure{\bigunion_{k=1}^n I_k}\le\bigmeasure{\bigunion_{k=1}^{\infty}I_k}\]
+so
+\[\sum_{k=1}^{\infty}\l{I_k}\le\bigmeasure{\bigunion_{k=1}^{\infty}I_k}\le\sum_{k=1}^{\infty}\l{I_k}\qedhere\]
+\end{proof}
+
+\begin{exer}[13]
+For any \(\epsilon>0\), there exists \(F\subset[0,1]\setminus\Q\) closed in~\(\R\) with \(\m{F}\ge1-\epsilon\).
+\end{exer}
+\begin{proof}
+Let \(r_1,r_2,\ldots\) be an enumeration of \([0,1]\sect\Q\) and define
+\[F=[0,1]\setminus\bigunion_{k=1}^{\infty}\Bigl(r_k-\frac{\epsilon}{2^{k+1}},r_k+\frac{\epsilon}{2^{k+1}}\Bigr)\]
+Clearly \(F\subset[0,1]\setminus\Q\), \(F\)~is closed in~\(\R\), and \(\m{F}\ge1-\epsilon\) by Exercise~3 since
+\[\bigmeasure{\bigunion_{k=1}^{\infty}\Bigl(r_k-\frac{\epsilon}{2^{k+1}},r_k+\frac{\epsilon}{2^{k+1}}\Bigr)}\le\sum_{k=1}^{\infty}\frac{\epsilon}{2^k}=\epsilon\qedhere\]
+\end{proof}
+
+% References
+\newpage
+\begin{thebibliography}{0}
+\bibitem{axler} Axler, S. \textit{Measure, Integration \& Real Analysis.} Springer, 2020.
+\end{thebibliography}
+\end{document}
