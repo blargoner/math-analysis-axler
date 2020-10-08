@@ -356,6 +356,38 @@ For \(a,b\in\R\) with \(a<b\), we have
 Therefore \(f=\inv{(\inv{f})}\) is open (2.33), so \(\inv{f}\)~is continuous.
 \end{proof}
 
+\begin{exer}[27]
+Let \(\S=\{\emptyset,\R\}\) and define \(f:\R\to[-\infty,\infty]\) by
+\[f(x)=\begin{cases}
+-\infty&\text{if }x<0\\
+\infty&\text{if }x\ge0
+\end{cases}\]
+Then for every \(a\in\R\), \(\inv{f}((a,\infty))=\emptyset\in\S\), but \(f\)~is not \(\S\)-measurable since it is not constant (for example \(\inv{f}(\{\infty\})=[0,\infty)\not\in\S\)).
+\end{exer}
+\begin{slogan}
+For extended real-valued functions, infinity can't be ignored!
+\end{slogan}
+
+\begin{exer}[28]
+If \(f:B\to\R\) is Borel measurable and \(g:\R\to\R\) is defined by
+\[g(x)=\begin{cases}
+f(x)&\text{if }x\in B\\
+0&\text{if }x\not\in B
+\end{cases}\]
+then \(g\)~is Borel measurable.
+\end{exer}
+\begin{slogan}
+Borel measurable functions can be extended to be total!
+\end{slogan}
+\begin{proof}
+Since \(B=\inv{f}(\R)\) is Borel, so is \(\R\setminus B\). For \(a\in\R\),
+\[\inv{g}((a,\infty))=\begin{cases}
+\inv{f}((a,\infty))&\text{if }a\ge0\\
+\inv{f}((a,\infty))\union(\R\setminus B)&\text{if }a<0
+\end{cases}\]
+so \(\inv{g}((a,\infty))\)~is Borel and \(g\)~is Borel measurable (2.39).
+\end{proof}
+
 % References
 \newpage
 \begin{thebibliography}{0}
